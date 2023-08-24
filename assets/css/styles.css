@@ -47,11 +47,21 @@
     --footer-background-color: #000;
 }
 
+.dark-theme :is(button, h1, h2, h3) {
+    letter-spacing: 5px;
+    font-weight: normal;
+}
+
+.dark-theme .invert-element {
+    transform: rotateZ(180deg) scaleX(-1);
+}
+
 /***  GENERIC STYLES ***/
 
 * {
     margin: 0;
     box-sizing: border-box;
+    transition: 1s;
 }
 
 h1, h2, h3 {
@@ -79,6 +89,24 @@ button {
     text-transform: uppercase;
     cursor: pointer;
     transition: background 1s;
+}
+
+input, textarea {
+    border: 2px solid var(--primary-color-contrast);
+    background-color: var(--field-background-color);
+    color: var(--primary-color-contrast);
+    padding: 8px;
+    margin-bottom: 24px;
+    font-size: 1rem;
+}
+
+label {
+    margin-bottom: 8px;
+}
+
+input:focus-visible, textarea:focus-visible {
+    outline: none;
+    border-color: #000;
 }
 
 /*** HEADER STYLES ***/
@@ -165,6 +193,17 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+main::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: var(--page-background) no-repeat,
+        url("../images/backgrounds/florest.png") no-repeat;
+    background-size: cover;
+    z-index: -1;
 }
 
 /***  SECTION STYLES ***/
@@ -325,4 +364,42 @@ section {
 #section-form .form-container form button:hover {
     background-color: var(--primary-color-contrast);
     color: var(--field-background-color);
+}
+
+/*** FOOTER STYLES ***/
+
+footer {
+    padding: 60px 0;
+    background-color: var(--footer-background-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+footer p {
+    max-width: 700px;
+    margin-bottom: 24px;
+}
+
+footer::before, footer::after {
+    content: "";
+    width: 300px;
+    height: 200px;
+    background: url("../images/footer/tape.svg") no-repeat;
+    background-size: contain;
+    position: absolute;
+    bottom: -30px;
+}
+
+footer::before {
+    left: -50px;
+    transform: rotateZ(-10deg);
+}
+
+footer::after {
+    right: -50px;
+    transform: rotateZ(10deg);
 }
